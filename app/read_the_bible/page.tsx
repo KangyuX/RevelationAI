@@ -9,7 +9,7 @@ export default function ReadTheBibleBook() {
     const [biblePassage, setBiblePassage]: any = useState(null);
 
     useEffect(() => {
-        fetchBiblePassage().then(data => setBiblePassage(data));
+        GET().then(data => setBiblePassage(data));
     }, []);
 
     return (
