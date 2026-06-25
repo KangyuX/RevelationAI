@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Error from "next/error";
-import { fetchBiblePassage } from "./api/route";
+import { GET } from "./api/route";
 
 export default function ReadTheBibleBook() {
 
