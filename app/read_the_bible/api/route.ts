@@ -1,4 +1,4 @@
-export async function fetchBiblePassage() {
+export async function GET() {
 
     const options = {
   method: 'GET',
