@@ -15,6 +15,7 @@ const passage = await bibleClient.getPassage(3034, "JHN.3", "text");
 console.log(passage.content);
 
 const BibleServer = async () => {
+
   return (
     <div>
       {passage.content}
