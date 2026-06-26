@@ -3,14 +3,26 @@
 async function fetchPassage() {
   const secretApiKey = process.env.SECRET_API_KEY;
 
-  const response = await fetch('https://api.youversion.com/v1/bibles/3034/passages/MAT.1', {
-    method: 'GET',
-    cache: 'no-store',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${secretApiKey}`
+  if (!secretApiKey) {
+    console.error("Missing SECRET_API_KEY in environment variables.");
+    return { content: null };
+  }
+
+  const response = await fetch(
+    "https://api.youversion.com/v1/bibles/3034/passages/MAT.1",
+    {
+      method: "GET",
+      cache: "no-store",
+      headers: {
+        Authorization: `Bearer ${secretApiKey}`
+      }
     }
-  });
+  );
+
+  if (!response.ok) {
+    console.error("Failed to fetch passage:", response.statusText);
+    return { content: null };
+  }
 
   return response.json();
 }
@@ -22,7 +34,7 @@ export default async function BibleServer() {
     <section>
       <h1>Passage</h1>
       <article>
-        <p>{passage.content ?? 'No passage text available.'}</p>
+        <p>{passage?.content ?? "No passage text available."}</p>
       </article>
     </section>
   );
